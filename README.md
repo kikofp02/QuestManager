@@ -1,7 +1,15 @@
-# Quest Manager
-This is a research Project on Quest Managers for games and an explanation on how to implement one on c++ with xml and sdl libraries.
+---
+layout: default
 ---
 
-In this site is explained evrithing you need to know to implement a quest manager on a c++ project with the help of the xml and sdl libraries. To help with the explanation you can find a slides presentation below.
+Text can be **bold**, _italic_, ~~strikethrough~~ or `keyword`.
 
-[Link to the presentation](https://docs.google.com/presentation/d/1sUzmROdSO6PizK6M_0evII9T5EJ6JOWZUksZApChd1Y/edit?usp=sharing).
+[Link to another page](./another-page.html).
+
+There should be whitespace between paragraphs.
+
+There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+
+# Header 1
+
+This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
