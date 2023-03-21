@@ -6,9 +6,9 @@
 #include "Audio.h"
 #include "Scene.h"
 #include "Map.h"
-#include "Physics.h"
 #include "Fonts.h"
 #include "EntityManager.h"
+#include "QuestManager.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -28,9 +28,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio(true);
 	scene = new Scene(true);
 	map = new Map(true);
-	physics = new Physics(true);
 	fonts = new Fonts(true);
-	entityManager = new EntityManager(true);
+	entityManager = new EntityManager(false);
+	questManager = new QuestManager(true);
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -39,9 +39,9 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(tex);
 	AddModule(audio);
 	AddModule(fonts);
-	AddModule(physics);
 	AddModule(scene);
 	AddModule(entityManager);
+	AddModule(questManager);
 	AddModule(map);
 
 	// Render last to swap buffer
@@ -278,10 +278,10 @@ const char* App::GetOrganization() const
 pugi::xml_node App::LoadConfigFileToVar()
 {
 	pugi::xml_node ret;
-	// L01: DONE 3: Load config.xml file using load_file() method from the xml_document class
+	// Load config.xml file using load_file() method from the xml_document class
 	pugi::xml_parse_result parseResult = configFile.load_file("config.xml");
 
-	// L01: DONE 3: Check result for loading errors
+	// Check result for loading errors
 	if (parseResult) {
 		ret = configFile.child("config");
 	}

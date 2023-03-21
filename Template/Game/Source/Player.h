@@ -27,65 +27,20 @@ public:
 
 	bool CleanUp();
 
-	// L07 DONE 6: Define OnCollision function for the player. Check the virtual function on Entity class
-	void OnCollision(PhysBody* physA, PhysBody* physB);
-
-	void EndCollision(PhysBody* physA, PhysBody* physB);
-
-	int GetState() const { return state; }
-
-	PhysBody* getpBody();
-
 
 public:
 
 	Animation* currentAnim = nullptr;
 
-	Animation idlestaticleftanim;
-	Animation statictodynamicleftanim;
-	Animation idleRightAnim;
-	Animation idleLeftAnim;
-	Animation runningRightAnim;
-	Animation runningLeftAnim;
-	Animation dieRightAnim;
-	Animation dieLeftAnim;
-	Animation jumpRightAnim;
-	Animation jumpLeftAnim;
-	Animation fallRightAnim;
-	Animation fallLeftAnim;
-	Animation initChargeAnim;
-	Animation chargeAnim;
-	Animation endChargeAnim;
-	Animation attackRightAnim;
-	Animation attackLeftAnim;
-	Animation specialRightAnim;
-	Animation specialLeftAnim;
+	Animation idleanim;
 
-
-	bool endLevel;
-	bool endLevelDie;
 	bool godMode = false;
 
 private:
 
-	//L02: DONE 1: Declare player parameters
+	// Declare player parameters
 	SDL_Texture* texture;
 	const char* texturePath;
-
-	// L07 DONE 5: Add physics to the player - declare a Physics body
-	PhysBody* pbody;
-	List<PhysBody*> attackCollisions;
-
-	int winLoseTimer;
-	int state;
-	int pickCoinFxId;
-	bool facing;
-	bool canJump;
-	int remainJumps;
-	int chargeTimer;
-	bool isCharging;
-	bool isColliding;
-	int specialCooldown;
 
 };
 

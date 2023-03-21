@@ -6,7 +6,6 @@
 #include "PugiXml/src/pugixml.hpp"
 
 class App;
-class PhysBody;
 class GuiControl;
 
 class Module
@@ -22,7 +21,7 @@ public:
 	}
 
 	// Called before render is available
-	// L01: DONE 5: Sending config file to all modules
+	// Sending config file to all modules
 	virtual bool Awake(pugi::xml_node&)
 	{
 		return true;
@@ -66,11 +65,6 @@ public:
 	virtual bool SaveState(pugi::xml_node&)
 	{
 		return true;
-	}
-
-	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB)
-	{
-
 	}
 
 	virtual bool OnGuiMouseClickEvent(GuiControl* control)

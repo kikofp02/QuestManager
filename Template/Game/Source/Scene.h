@@ -2,6 +2,10 @@
 #define __SCENE_H__
 
 #include "Module.h"
+#include "Player.h"
+#include "Point.h"
+#include "NPC.h"
+#include "Item.h"
 
 struct SDL_Texture;
 
@@ -32,8 +36,29 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
+public:
+
+	Player* player;
+	//List<Chest*> rings;
+
+	const char* musicPath;
+
+	Animation animation;
+
+	bool debug;
+
+	bool questMenu;
+
+	List<NPC*>npcs;
+	List<Item*>items;
+
+	int points;
+
 private:
 	SDL_Texture* img;
+
+	int font_text;
+	char pointsText[6] = { "\0" };
 };
 
 #endif // __SCENE_H__

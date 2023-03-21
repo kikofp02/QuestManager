@@ -6,7 +6,7 @@
 #include "Render.h"
 #include "Log.h"
 #include "Point.h"
-#include "Physics.h"
+#include "Scene.h"
 
 #define FACING_LEFT false
 #define FACING_RIGHT true
@@ -28,6 +28,11 @@ Player::Player() : Entity(EntityType::PLAYER)
 {
 	name.Create("Player");
 
+	// idle player
+	idleanim.PushBack({ 0, 0, 32, 32 });
+	idleanim.loop = false;
+	idleanim.speed = 0.0f;
+
 }
 
 Player::~Player() {
@@ -35,9 +40,9 @@ Player::~Player() {
 }
 
 bool Player::Awake() {
-	//Get Player parameters from XML
-	position.x = parameters.attribute("x").as_int();
-	position.y = parameters.attribute("y").as_int();
+	// Get Player parameters from XML
+	tile.x = parameters.attribute("x").as_int();
+	tile.y = parameters.attribute("y").as_int();
 	texturePath = parameters.attribute("texturepath").as_string();
 
 	return true;
@@ -45,23 +50,10 @@ bool Player::Awake() {
 
 bool Player::Start() {
 
-	//initilize textures
+	// initilize textures
 	texture = app->tex->Load(texturePath);
 
-	// L07 DONE 5: Add physics to the player - initialize physics body
-	//pbody = app->physics->CreateRectangle(position.x+16, position.y+16, 32, 50, bodyType::DYNAMIC);
-	pbody = app->physics->CreateCircle(position.x, position.y, 20, bodyType::DYNAMIC);
-
-	// L07 DONE 6: Assign player class (using "this") to the listener of the pbody. This makes the Physics module to call the OnCollision method
-	pbody->listener = this; 
-
-	// L07 DONE 7: Assign collider type
-	pbody->ctype = ColliderType::PLAYER;
-
-	currentAnim = &idlestaticleftanim;
-	facing = FACING_RIGHT;
-	dieLeftAnim.Reset();
-	dieRightAnim.Reset();
+	currentAnim = &idleanim;
 
 	return true;
 }
@@ -69,18 +61,36 @@ bool Player::Start() {
 bool Player::Update()
 {
 	//PLAYER MOVEMENT
+	if (app->scene->questMenu) {}
+	else if ((app->input->GetKey(SDL_SCANCODE_W) == KEY_DOWN || (app->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN)) && tile.y > 0)
+	{
+		tile.y --;
+	}
+	else if ((app->input->GetKey(SDL_SCANCODE_S) == KEY_DOWN || (app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_DOWN)) && tile.y < 21)
+	{
+		tile.y ++;
+	}
+	else if ((app->input->GetKey(SDL_SCANCODE_A) == KEY_DOWN || (app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_DOWN)) && tile.x > 0)
+	{
+		tile.x --;
+	}
+	else if ((app->input->GetKey(SDL_SCANCODE_D) == KEY_DOWN || (app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_DOWN)) && tile.x < 37)
+	{
+		tile.x ++;
+	}
 	
 	//WINNING SEQUENCE
 	
 	//ANIMATION STATE MACHINE
 
+	SDL_Rect rect = currentAnim->GetCurrentFrame();
+	app->render->DrawTexture(texture, tile.x * 32, tile.y * 32, &rect);
+	currentAnim->Update();
+
 	return true;
 }
 
 bool Player::PostUpdate() {
-	SDL_Rect rect = currentAnim->GetCurrentFrame();
-	app->render->DrawTexture(texture, position.x - 38, position.y - 27, &rect);
-	currentAnim->Update();
 
 	return true;
 }
@@ -88,18 +98,4 @@ bool Player::PostUpdate() {
 bool Player::CleanUp()
 {
 	return true;
-}
-
-void Player::OnCollision(PhysBody* physA, PhysBody* physB) {
-
-}
-
-void Player::EndCollision(PhysBody* physA, PhysBody* physB)
-{
-	
-}
-
-PhysBody* Player::getpBody()
-{
-	return pbody;
 }

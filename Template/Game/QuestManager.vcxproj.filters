@@ -13,7 +13,7 @@
     <ClCompile Include="Source\EntityManager.cpp">
       <Filter>Source\Application\Game\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Life.cpp">
+    <ClCompile Include="Source\NPC.cpp">
       <Filter>Source\Application\Game\Entities</Filter>
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
@@ -46,8 +46,17 @@
     <ClCompile Include="Source\Map.cpp">
       <Filter>Source\Application\Game\GameModules</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Physics.cpp">
-      <Filter>Source\Application\Game\GameModules</Filter>
+    <ClCompile Include="Source\Chest.cpp">
+      <Filter>Source\Application\Game\Items</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\QuestManager.cpp">
+      <Filter>Source\Application\Game\Quests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\TalkQuest.cpp">
+      <Filter>Source\Application\Game\Quests</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CollectQuest.cpp">
+      <Filter>Source\Application\Game\Quests</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,7 +99,7 @@
     <ClInclude Include="Source\EntityManager.h">
       <Filter>Source\Application\Game\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Life.h">
+    <ClInclude Include="Source\NPC.h">
       <Filter>Source\Application\Game\Entities</Filter>
     </ClInclude>
     <ClInclude Include="Source\Player.h">
@@ -120,11 +129,26 @@
     <ClInclude Include="Source\Map.h">
       <Filter>Source\Application\Game\GameModules</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Physics.h">
-      <Filter>Source\Application\Game\GameModules</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Animation.h">
       <Filter>Source\Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Chest.h">
+      <Filter>Source\Application\Game\Items</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Item.h">
+      <Filter>Source\Application\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Quest.h">
+      <Filter>Source\Application\Game\Quests</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\QuestManager.h">
+      <Filter>Source\Application\Game\Quests</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\TalkQuest.h">
+      <Filter>Source\Application\Game\Quests</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CollectQuest.h">
+      <Filter>Source\Application\Game\Quests</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -163,6 +187,12 @@
     </Filter>
     <Filter Include="Source\Application\Game\GameModules">
       <UniqueIdentifier>{9b9e5597-f894-491c-b546-69a649ae8513}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Application\Game\Items">
+      <UniqueIdentifier>{290dfcd3-7c1d-4629-97db-002c0b44276f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Application\Game\Quests">
+      <UniqueIdentifier>{2d3d1773-f211-4479-a679-637153b29087}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

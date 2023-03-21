@@ -14,9 +14,9 @@ class Textures;
 class Audio;
 class Scene;
 class Map;
-class Physics;
 class Fonts;
 class EntityManager;
+class QuestManager;
 
 class App
 {
@@ -82,9 +82,9 @@ public:
 	Audio* audio;
 	Scene* scene;
 	Map* map;
-	Physics* physics;
 	Fonts* fonts;
 	EntityManager* entityManager;
+	QuestManager* questManager;
 
 private:
 

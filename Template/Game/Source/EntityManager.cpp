@@ -1,6 +1,6 @@
 #include "EntityManager.h"
 #include "Player.h"
-#include "Life.h"
+#include "NPC.h"
 #include "App.h"
 #include "Textures.h"
 
@@ -73,7 +73,7 @@ Entity* EntityManager::CreateEntity(EntityType type)
 {
 	Entity* entity = nullptr; 
 
-	//L02: DONE 2: Instantiate entity according to the type and add the new entoty it to the list of Entities
+	// Instantiate entity according to the type and add the new entoty it to the list of Entities
 
 	switch (type)
 	{
@@ -82,8 +82,8 @@ Entity* EntityManager::CreateEntity(EntityType type)
 		entity = new Player();
 		break;
 
-	case EntityType::LIFE:
-		entity = new Life();
+	case EntityType::NPC:
+		entity = new NPC();
 		break;
 
 	default: break;

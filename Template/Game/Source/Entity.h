@@ -6,23 +6,18 @@
 #include "Input.h"
 #include "Render.h"
 
-class PhysBody;
-
 enum class EntityType
 {
 	PLAYER,
-	COIN,
-	LIFE,
-	PIKU,
-	MAMAPIKU,
-	FLYING,
+	NPC,
+	ITEM,
 	UNKNOWN
 };
 
 class Entity
 {
 public:
-
+	Entity();
 	Entity(EntityType type) : type(type), active(true) {}
 
 	virtual bool Awake()
@@ -78,14 +73,6 @@ public:
 		}
 	}
 
-	virtual void OnCollision(PhysBody* physA, PhysBody* physB) {
-	
-	};
-
-	virtual void EndCollision(PhysBody* physA, PhysBody* physB) {
-
-	};
-
 public:
 
 	SString name;
@@ -95,7 +82,7 @@ public:
 
 	// Possible properties, it depends on how generic we
 	// want our Entity class, maybe it's not renderable...
-	iPoint position;       
+	iPoint tile;       
 	bool renderable = true;
 };
 
