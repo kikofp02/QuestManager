@@ -111,7 +111,7 @@ bool Scene::Update(float dt)
 		app->render->DrawRectangle({ player->tile.x * 32, player->tile.y * 32, 32, 32}, 0, 255, 0);
 	}
 
-	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN) {
+	if (app->input->GetKey(SDL_SCANCODE_J) == KEY_DOWN) {
 		if (questMenu) { questMenu = false; }
 		else if (!questMenu) { questMenu = true; }
 	}
