@@ -24,7 +24,7 @@ The quest system consist in how the quests are implemented in your game. Are you
 4.  **Modularity:** which are your quest types to make presets for the quests? The most common types are:
   - Syntax or text quests: these are the ones dedicated to chat with npc and chose the right path of the dialogue.
   - Gather quests: you are demanded to collect a certain ammount of a specific collectable.
-  - Kill quests: in these you have to killa certain ammount of a specific mob or enemy.
+  - Kill quests: in these you have to kill a certain ammount of a specific mob or enemy.
   - Delivery quests: you are given an item that has to be given to a certain npc.
   - Escort quests: in which you have to guide an npc to a certain place and fight to protect him douring the journey.
   - Hybrid quests: these are combinations of the above types.
