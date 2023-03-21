@@ -35,9 +35,11 @@
 	</scene>
 	<questmanager>
 		<activequests>
+			<!-- TODO 4 - Add the list of quests active on the begining of the program -->
 			<quest id="1"></quest>
 		</activequests>
-		<quest type="0" id="1" name="TALK WITH GRANDPA KIKO" description="Search for your grandfather hwo needs your help." nextQuestId="2" npcId="2" reward="700"></quest>
-		<quest type="1" id="2" name="FIND GRANDPA S LOST CHESTS" description="Grandpa's chests disappeared long ago. They have to be somewhere!" nextQuestId="0" itemId="1" reward="0"></quest>
+		<!-- TODO 1 - Complete the quest structure -->
+		<quest type="" id="1" name="TALK WITH GRANDPA KIKO" description="Search for your grandfather hwo needs your help." nextQuestId="" npcId="" reward=""></quest>
+		<quest type="" id="2" name="FIND GRANDPA S LOST CHESTS" description="Grandpa's chests disappeared long ago. They have to be somewhere!" nextQuestId="" itemId="1" reward="1000000"></quest>
 	</questmanager>
 </config>

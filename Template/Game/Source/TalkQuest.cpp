@@ -7,12 +7,13 @@
 #include "Scene.h"
 
 TalkQuest::TalkQuest(pugi::xml_node node) {
-	this->id = node.attribute("id").as_int();
-	this->name = node.attribute("name").as_string();
-	this->description = node.attribute("description").as_string();
-	this->nextQuestId = node.attribute("nextQuestId").as_int();
-	this->npcId = node.attribute("npcId").as_int();
-	this->reward = node.attribute("reward").as_int();
+	// TODO 2 - Load all the parameters of the quest
+	this->id = ;
+	this->name = ;
+	this->description = ;
+	this->nextQuestId = ;
+	this->npcId = ;
+	this->reward = ;
 	this->type = QuestType::TALK;
 }
 

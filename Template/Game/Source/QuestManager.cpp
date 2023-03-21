@@ -25,17 +25,7 @@ bool QuestManager::Awake(pugi::xml_node& config)
 	for (pugi::xml_node node = config.child("quest"); node; node = node.next_sibling("quest"))
 	{
 		Quest* quest;
-		switch ((QuestType)node.attribute("type").as_int())
-		{
-		case QuestType::TALK:
-			quest = new TalkQuest(node);
-			break;
-		case QuestType::COLLECT:
-			quest = new CollectQuest(node);
-			break;
-		default:
-			break;
-		}
+		// TODO 3 - Create the quests depending on the type attribute
 
 		quests.Add(quest);
 	}
@@ -46,10 +36,8 @@ bool QuestManager::Awake(pugi::xml_node& config)
 		while (qitem != nullptr)
 		{
 			Quest* item = qitem->data;
-			if (item->id == node.attribute("id").as_int()) {
-				activeQuests.Add(item);
-				break;
-			}
+			//TODO 4 - If it's a quest that has to go in the actives list, add it to it
+			
 
 			qitem = qitem->next;
 		}
@@ -78,21 +66,8 @@ bool QuestManager::Update(float dt)
 		pQuest = item->data;
 
 		if (pQuest->Update() == false) {
-			activeQuests.Del(item);
-
-			ListItem<Quest*>* qitem = quests.start;
-			while (qitem != nullptr)
-			{
-				Quest* item = qitem->data;
-				if (item->id == pQuest->nextQuestId) {
-					activeQuests.Add(item);
-					break;
-				}
-
-				qitem = qitem->next;
-			}
-
-			completedQuests.Add(pQuest);
+			// TODO 5 - When the quest is completed, we have to deleted from actives list, add the next quest to actives list and then add the completed quest to the copleted quests list
+			
 		}
 	}
 
