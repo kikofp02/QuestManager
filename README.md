@@ -160,3 +160,16 @@ Update the lists of quests when a quest is completed (output of the update of th
 			completedQuests.Add(pQuest);
 		}
 ```
+
+## Review
+
+Well, that's all I had to offer for this research. The quest manager implemented here is something rudimentary that was made for the purpose of the understanding of the true functionalities of a proper quest manager. Althogh, I spent lots of time for it to be profitable for others making it modular and esy to personalize. I encourage you to use it for your projects or whatever you whant.
+
+Thanks for reviewing my hard work, it makes me feel that skipping a sleep cicle to finish this was worth doing.
+
+## Bibliography
+
+- [Link to the presentation](https://docs.google.com/presentation/d/1sUzmROdSO6PizK6M_0evII9T5EJ6JOWZUksZApChd1Y/edit?usp=sharing)
+- [Documentation for the explanation](https://en.wikipedia.org/wiki/Quest_(video_games)#Overview)
+- [Documentation for the coding](https://www.youtube.com/playlist?list=PL4G2bSPE_8umJfOuXxut28OQyIliW2Pfp)
+- [Awesome project with lots of inspiring ideas](https://github.com/MagiX7/TheHunterOdyssey)
