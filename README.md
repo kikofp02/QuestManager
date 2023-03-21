@@ -30,19 +30,133 @@ The quest system consist in how the quests are implemented in your game. Are you
   - Hybrid quests: these are combinations of the above types.
 5.  **Relations:** what other systems is our quest manager relatid with? Such as a _Dialogue system, Events System, NPC's System, Game World, etc_.
 
-Now that we have an idea of what we need in our game we can start to create our quest manager. I will put a mock scenario for you to understand how the quest manager works. I wont teach you how to recreate the quest manager from scrach but I'll try to make you understand the core of it's workflow and the utilities it offers for you to develop it in your projects. So please download the template for the exercises [here]().
+Now that we have an idea of what we need in our game we can start to create our quest manager. I will put a mock scenario for you to understand how the quest manager works. I wont teach you how to recreate the quest manager from scrach but I'll try to make you understand the core of it's workflow and the utilities it offers for you to develop it in your projects. So please download the template for the exercises [here](https://github.com/kikofp02/QuestManager/tree/Handout).
 
 ## Implementing a Quest Manager
 
-In our template we have
-```c++
-//Lorem ipsum
-int lorem = 0;
-end
-```
+In our template we will recreate a mock scenario. We have a map, with a player that can move within the tiles and some NPC, all made very basic. So we will try to create a story where us, the player, are demanded with a questline. The example goes throug 2 quests:
+1.  A Text/Chat quest where you are demanded to talk with a certain NPC.
+2.  A Collect quest where you have to find and collect one item on the world.
+
+So now, with a questline we can begin to create the quest manager. The main steps we need or quest manager to follow will be:
+- Have the proper parameters on the config file of the program.
+- Make the quest manager to create the quests at the begining of the program.
+- Load the parameters of the config file to the proper quest in each quest constructor.
+- Create a list of the quests that start active on the begining of the app.
+- Load to an active quests list the quests that are currently running.
+- Make the quest manager instantiate and run all the active quests updates.
+- Generate some kind of event on each quest update that if it happens makes the update return false, indicating that the quest has been completed.
+- Make the quest manager do the arrangements for the change of the active quest to the next quest in the questline.
 
 ### TODOS
 
-Now you will go throug a certain amount of TODOS in which you will have to solve certain code proposals in order for the quest manager to work completly.
+Now you will go throug a certain amount of TODOS in which you will have to solve certain code proposals in order for the quest manager to work completly. The main foundations are allready implemented so if you solve the issues the program will run correctly. You can find the answeres here and a solved program in this [branch](https://github.com/kikofp02/QuestManager/tree/Solved_Handout).
 
 #### TODO 1
+
+Edit the config.xml file to complete the quests parameters.
+
+```c++
+// config.xml file changes:
+
+		<!-- Complete the quest structure -->
+		<quest type="0" id="1" name="TALK WITH GRANDPA KIKO" description="Search for your grandfather hwo needs your help." nextQuestId="2" npcId="2" reward="700"></quest>
+		<quest type="1" id="2" name="FIND GRANDPA S LOST CHESTS" description="Grandpa's chests disappeared long ago. They have to be somewhere!" nextQuestId="0" itemId="1" reward="0"></quest>
+```
+
+#### TODO 2
+
+Load the parameters to the quest in his constructor.
+
+```c++
+// TextQuest.cpp file changes:
+
+TalkQuest::TalkQuest(pugi::xml_node node) {
+	// TODO 2 - Load all the parameters of the quest
+	this->id = node.attribute("id").as_int();
+	this->name = node.attribute("name").as_string();
+	this->description = node.attribute("description").as_string();
+	this->nextQuestId = node.attribute("nextQuestId").as_int();
+	this->npcId = node.attribute("npcId").as_int();
+	this->reward = node.attribute("reward").as_int();
+	this->type = QuestType::TALK;
+}
+```
+
+#### TODO 3
+
+Make the creation of the quests in the quest manager's awake depending on the quest type marked in the config file.
+
+```c++
+// QuestManager.cpp file changes:
+
+		Quest* quest;
+		// TODO 3 - Create the quests depending on the type attribute
+		switch ((QuestType)node.attribute("type").as_int())
+		{
+		case QuestType::TALK:
+			quest = new TalkQuest(node);
+			break;
+		case QuestType::COLLECT:
+			quest = new CollectQuest(node);
+			break;
+		default:
+			break;
+		}
+
+		quests.Add(quest);
+```
+
+#### TODO 4
+
+Nest in the config file the quests that will start enabled and then, on the quest manager, add them to the list of active quests.
+
+```c++
+// config.xml file changes:
+    
+		<activequests>
+			<!-- TODO 4 - Add the list of quests active on the begining of the program -->
+			<quest id="1"></quest>
+		</activequests>
+    
+    
+// QuestManager.cpp file changes:
+
+		ListItem<Quest*>* qitem = quests.start;
+		while (qitem != nullptr)
+		{
+			Quest* item = qitem->data;
+			//TODO 4 - If it's a quest that has to go in the actives list, add it to it
+			if (item->id == node.attribute("id").as_int()) {
+				activeQuests.Add(item);
+				break;
+			}
+
+			qitem = qitem->next;
+		}
+```
+
+#### TODO 5
+
+Update the lists of quests when a quest is completed (output of the update of the quest is fasle).
+
+```c++
+		if (pQuest->Update() == false) {
+			// TODO 5 - When the quest is completed, we have to deleted from actives list, add the next quest to actives list and then add the completed quest to the copleted quests list
+			activeQuests.Del(item);
+
+			ListItem<Quest*>* qitem = quests.start;
+			while (qitem != nullptr)
+			{
+				Quest* item = qitem->data;
+				if (item->id == pQuest->nextQuestId) {
+					activeQuests.Add(item);
+					break;
+				}
+
+				qitem = qitem->next;
+			}
+
+			completedQuests.Add(pQuest);
+		}
+```
